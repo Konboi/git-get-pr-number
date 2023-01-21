@@ -12,10 +12,26 @@ import (
 const DEFAULT_BASE_BRANCH_NAME = "main"
 
 func main() {
-	var commit string
-	flag.StringVar(&commit, "commit", "", "commit hash")
-	flag.StringVar(&commit, "c", "", "commit hash")
+	var help bool
+	flag.BoolVar(&help, "h", false, "help message")
+	flag.BoolVar(&help, "help", false, "help message")
 	flag.Parse()
+
+	if help {
+		fmt.Println(`Print GitHub Pull Request ID from commit hash.
+
+USAGE
+    git-get-pr-id <commit hash>
+
+EXAMPLES
+    $ gh-get-pr-id 123abc`)
+		os.Exit(0)
+	}
+
+	if len(os.Args) != 2 {
+		log.Fatal("error require commit has. e.g) `git-get-pr-id <commit hash>`")
+	}
+	commit := os.Args[1]
 
 	var base string
 	if os.Getenv("BASE_BRANCH") != "" {
