@@ -14,4 +14,12 @@ $ git-get-pr-id <commit hash>
 $ gh pr view (git-get-pr-id <commit hash>) -w
 ```
 
+### tig
+
+You can open the PR from tig with `Shit - P` command use by below config.
+
+```
+bind generic P @sh -c 'gh pr view $(git-get-pr-id %(commit)) -w'
+```
+
 
