@@ -21,15 +21,15 @@ func main() {
 		fmt.Println(`Print GitHub Pull Request ID from commit hash.
 
 USAGE
-    git-get-pr-id <commit hash>
+    git-get-pr-number <commit hash>
 
 EXAMPLES
-    $ gh-get-pr-id 123abc`)
+    $ gh-get-pr-number 123abc`)
 		os.Exit(0)
 	}
 
 	if len(os.Args) != 2 {
-		log.Fatal("error require commit has. e.g) `git-get-pr-id <commit hash>`")
+		log.Fatal("error require commit has. e.g) `git-get-pr-number <commit hash>`")
 	}
 	commit := os.Args[1]
 
@@ -74,7 +74,7 @@ EXAMPLES
 	}
 
 	msg := strings.Split(strings.TrimSpace(string(mlog)), " ")
-	prID := strings.Trim(msg[3], "#")
+	prNumber := strings.Trim(msg[3], "#")
 
-	fmt.Println(prID)
+	fmt.Println(prNumber)
 }
